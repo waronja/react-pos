@@ -60,11 +60,20 @@ function POSPage() {
     setCart(newCart);
   }
 
-  const componentRef = useRef();
+  // const componentRef = useRef();
 
   useEffect(() => {
     fetchProducts();
   },[]);
+
+  useEffect(() => {
+    let newTotalAmount = 0;
+    cart.forEach(icart => {
+      newTotalAmount = newTotalAmount + parseInt(icart.totalAmount);
+    })
+    setTotalAmount(newTotalAmount);
+  },[cart])
+
 
   return (
     <MainLayout>
