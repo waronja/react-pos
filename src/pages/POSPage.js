@@ -1,9 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react'
-import MainLayout from '../layouts/MainLayout'
-import axios from "axios"
-import { toast } from 'react-toastify';
-import { ComponentToPrint } from '../components/ComponentToPrint';
-
+import React, {useEffect, useRef, useState} from 'react';
+import MainLayout from '../layouts/MainLayout';
+import axios from "axios";
 
 function POSPage() {
 
@@ -12,10 +9,6 @@ function POSPage() {
   const [cart, setCart] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
 
-  const toastOptions = {
-    autoClose: 400,
-    pauseOnHover: true,
-  }
 
   const fetchProducts = async() => {
     setIsLoading(true);
@@ -48,7 +41,7 @@ function POSPage() {
       });
 
       setCart(newCart);
-      toast(`Added ${newItem.name} to cart`,toastOptions)
+      
 
     }else{
       let addingProduct = {
@@ -57,7 +50,7 @@ function POSPage() {
         'totalAmount': product.price,
       }
       setCart([...cart, addingProduct]);
-      toast(`Added ${product.name} to cart`, toastOptions)
+      
     }
 
   }
@@ -73,16 +66,6 @@ function POSPage() {
     fetchProducts();
   },[]);
 
-  useEffect(() => {
-    let newTotalAmount = 0;
-    cart.forEach(icart => {
-      newTotalAmount = newTotalAmount + parseInt(icart.totalAmount);
-    })
-    setTotalAmount(newTotalAmount);
-  },[cart])
-
-
-
   return (
     <MainLayout>
       <div className='row'>
@@ -93,7 +76,7 @@ function POSPage() {
                   <div className='pos-item px-3 text-center border' onClick={() => addProductToCart(product)}>
                       <p>{product.name}</p>
                       <img src={product.image} className="img-fluid" alt={product.name} />
-                      <p>${product.price}</p>
+                      <p>Ksh{product.price}</p>
                   </div>
 
                 </div>
@@ -103,7 +86,7 @@ function POSPage() {
         </div>
         <div className='col-lg-4'>
               <div style={{display: "none"}}>
-                <ComponentToPrint cart={cart} totalAmount={totalAmount} ref={componentRef}/>
+                
               </div>
               <div className='table-responsive bg-dark'>
                 <table className='table table-responsive table-dark table-hover'>
@@ -135,19 +118,6 @@ function POSPage() {
                 </table>
                 <h2 className='px-2 text-white'>Total Amount: ${totalAmount}</h2>
               </div>
-
-              <div className='mt-3'>
-                { totalAmount !== 0 ? <div>
-                  <button className='btn btn-primary' onClick={handlePrint}>
-                    Pay Now
-                  </button>
-
-                </div> : 'Please add a product to the cart'
-
-                }
-              </div>
-
-
         </div>
       </div>
     </MainLayout>
