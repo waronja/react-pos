@@ -3,7 +3,7 @@ import MainLayout from '../layouts/MainLayout'
 import axios from "axios"
 import { toast } from 'react-toastify';
 import { ComponentToPrint } from '../components/ComponentToPrint';
-import { useReactToPrint } from 'react-to-print';
+
 
 function POSPage() {
 
@@ -68,14 +68,6 @@ function POSPage() {
   }
 
   const componentRef = useRef();
-
-  const handleReactToPrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
-
-  const handlePrint = () => {
-    handleReactToPrint();
-  }
 
   useEffect(() => {
     fetchProducts();
