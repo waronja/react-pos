@@ -1,10 +1,11 @@
+import React, { Component }  from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import POSPage from './pages/POSPage';
+import HomePage from './pages/HomePage'
+import POSPage from './pages/POSPage'
 
 function App() {
   return (

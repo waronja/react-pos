@@ -76,7 +76,7 @@ function POSPage() {
                   <div className='pos-item px-3 text-center border' onClick={() => addProductToCart(product)}>
                       <p>{product.name}</p>
                       <img src={product.image} className="img-fluid" alt={product.name} />
-                      <p>Ksh{product.price}</p>
+                      <p>{product.price}</p>
                   </div>
 
                 </div>
